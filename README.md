@@ -1,10 +1,10 @@
 # Proposta Inicial da Arquitetura do Sistema
 
-[cite_start]Este documento descreve a proposta inicial da arquitetura da calculadora científica em Python, focando em uma estrutura modular, acessível e alinhada aos objetivos do projeto "Tecnologia Assistiva para Educação Inclusiva: uma calculadora científica em Python para usuários com deficiência visual"[cite: 4].
+Este documento descreve a proposta inicial da arquitetura da calculadora científica em Python, focando em uma estrutura modular, acessível e alinhada aos objetivos do projeto "Tecnologia Assistiva para Educação Inclusiva: uma calculadora científica em Python para usuários com deficiência visual".
 
 ## 1. Visão Geral da Arquitetura
 
-[cite_start]A arquitetura será desenvolvida em Python e projetada para operar exclusivamente em uma interface de terminal (linha de comando)[cite: 39, 40]. [cite_start]O design prioriza a total compatibilidade com leitores de tela (como NVDA e JAWS) [cite: 39, 67, 78][cite_start], eliminando elementos gráficos e baseando toda a interação em comandos de teclado e saída de texto claro[cite: 41, 84].
+A arquitetura será desenvolvida em Python e projetada para operar exclusivamente em uma interface de terminal (linha de comando). O design prioriza a total compatibilidade com leitores de tela (como NVDA e JAWS), eliminando elementos gráficos e baseando toda a interação em comandos de teclado e saída de texto claro.
 
 A arquitetura é baseada em um conceito de **modo duplo** para equilibrar flexibilidade e acessibilidade:
 
@@ -37,18 +37,18 @@ Estes módulos gerenciam a interação direta com o usuário:
 
 ## 4. Módulos Principais (Lógica e Cálculo)
 
-[cite_start]Estes módulos são as "bibliotecas" de back-end, estruturados como módulos independentes para escalabilidade[cite: 83]. Eles apenas realizam cálculos e não interagem diretamente com o usuário. [cite_start]A professora solicitou a descrição dos módulos de operações básicas, trigonométricas e memória[cite: 10].
+Estes módulos são as "bibliotecas" de back-end, estruturados como módulos independentes para escalabilidade. Eles apenas realizam cálculos e não interagem diretamente com o usuário. A professora solicitou a descrição dos módulos de operações básicas, trigonométricas e memória.
 
-* [cite_start]**Módulo `core` (Operações Básicas):** [cite: 10]
+* **Módulo `core` (Operações Básicas):**
     * Funções: Adição, Subtração, Multiplicação, Divisão, Porcentagem, Ordem de precedência (parênteses).
 
 * **Módulo `scientific` (Funções Científicas):**
-    * [cite_start]**Trigonométricas:** `sen`, `cos`, `tan`, `asen`, `acos`, `atan`[cite: 10, 68].
-    * [cite_start]**Log/Exp:** `log` (base 10), `ln` (natural), `e^x`[cite: 68].
+    * **Trigonométricas:** `sen`, `cos`, `tan`, `asen`, `acos`, `atan`.
+    * **Log/Exp:** `log` (base 10), `ln` (natural), `e^x`.
     * **Potência/Raiz:** `x^y`, `sqrt`, `x!`.
     * **Constantes:** `pi`, `e`.
 
-* [cite_start]**Módulo `memory` (Memória de Cálculo):** [cite: 10, 68, 83]
+* **Módulo `memory` (Memória de Cálculo):**
     * Funções para armazenar (`STO A`), recuperar (`RCL A`), adicionar (`M+`), e limpar registros de memória (`MC`).
 
 * **Módulo `datascience` (Funções de IA e C. de Dados):**
@@ -64,14 +64,14 @@ O `io_handler` gerenciará os seguintes estados para direcionar a interação:
 * **`ESTADO_ESTATISTICA`:** (Guiado) Ativado pelo comando `"estatistica"`. Guia o usuário para inserir dados e selecionar cálculos.
 * **`ESTADO_MEMORIA`:** (Guiado) Ativado por `"memoria"`. Permite ao usuário listar e gerenciar variáveis salvas.
 * **`ESTADO_CONFIG`:** (Guiado) Ativado por `"config"`. Permite alterar configurações globais (ex: Graus/Radianos).
-* **`ESTADO_AJUDA`:** (Guiado) Ativado por `"ajuda"`. [cite_start]Apresenta a documentação acessível das funções[cite: 69, 92].
+* **`ESTADO_AJUDA`:** (Guiado) Ativado por `"ajuda"`. Apresenta a documentação acessível das funções.
 
-## [cite_start]6. Interação via Teclado e Leitor de Tela [cite: 10]
+## 6. Interação via Teclado e Leitor de Tela
 
 A interação é projetada para ser 100% acessível, conforme solicitado:
 
-* [cite_start]**Entrada (Teclado):** O usuário usa apenas o teclado[cite: 10, 84]. No `ESTADO_PRINCIPAL`, ele digita expressões livres. Nos estados guiados, ele digita opções de menu (ex: "1") ou dados solicitados.
-* [cite_start]**Saída (Leitor de Tela):** Toda resposta do sistema é em texto claro e descritivo[cite: 10, 67, 84].
+* **Entrada (Teclado):** O usuário usa apenas o teclado. No `ESTADO_PRINCIPAL`, ele digita expressões livres. Nos estados guiados, ele digita opções de menu (ex: "1") ou dados solicitados.
+* **Saída (Leitor de Tela):** Toda resposta do sistema é em texto claro e descritivo.
     * **Exemplo (Modo Padrão):**
         * Usuário digita: `sqrt(25) + 1`
         * Saída no terminal (lida pelo NVDA): `"Resultado: 6"`
@@ -81,4 +81,4 @@ A interação é projetada para ser 100% acessível, conforme solicitado:
         * Usuário digita: `1`
         * Saída no terminal: `"Criar Matriz. Digite o número de linhas:"`
 
-[cite_start]Esta arquitetura modular permite a escalabilidade futura (adicionando novos módulos de cálculo ou estados guiados) [cite: 83] [cite_start]e cumpre os requisitos de acessibilidade[cite: 66, 67].
+Esta arquitetura modular permite a escalabilidade futura (adicionando novos módulos de cálculo ou estados guiados) e cumpre os requisitos de acessibilidade.
